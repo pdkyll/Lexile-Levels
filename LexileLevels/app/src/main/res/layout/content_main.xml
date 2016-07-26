@@ -16,13 +16,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_weight="1">
 
         <ImageView
             android:id="@+id/recommendations"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="200dp"
+            android:layout_height="150dp"
             android:src="@mipmap/recommendations"
             android:layout_gravity="left|top"/>
             <!--android:onClick=""-->
@@ -31,7 +32,7 @@
             android:id="@+id/uploads"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="200dp"
+            android:layout_height="150dp"
             android:src="@mipmap/uploads"
             android:layout_gravity="left|top"/>
 
@@ -40,13 +41,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_weight="1">
 
         <ImageView
             android:id="@+id/activity_log"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="200dp"
+            android:layout_height="150dp"
             android:src="@mipmap/ic_launcher"
             android:layout_gravity="left|top"/>
         <!--android:onClick=""-->
@@ -55,7 +57,7 @@
             android:id="@+id/vocabulary_lists"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="200dp"
+            android:layout_height="150dp"
             android:src="@mipmap/ic_launcher"
             android:layout_gravity="left|top"/>
 
@@ -64,13 +66,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_weight="1">
 
         <ImageView
             android:id="@+id/nearby_libraries"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="200dp"
+            android:layout_height="150dp"
             android:src="@mipmap/ic_launcher"
             android:layout_gravity="left|top"/>
         <!--android:onClick=""-->
@@ -79,7 +82,7 @@
             android:id="@+id/account"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="200dp"
+            android:layout_height="150dp"
             android:src="@mipmap/ic_launcher"
             android:layout_gravity="left|top"/>
 
