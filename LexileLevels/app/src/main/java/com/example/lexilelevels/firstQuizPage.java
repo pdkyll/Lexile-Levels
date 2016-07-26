@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -18,7 +17,7 @@ public class firstQuizPage extends AppCompatActivity implements AdapterView.OnIt
     TextView question;
     ListView listview;
     ArrayList<String> list = new ArrayList<String>();
-    String[] values = new String[] { "A piece of clothing worn on the head", "A stringy root", "A tree", "A feral cat found in South America" };
+    String[][] values = { {"A piece of clothing worn on the head", "A stringy root", "A tree", "A feral cat found in South America"} };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +25,10 @@ public class firstQuizPage extends AppCompatActivity implements AdapterView.OnIt
         setContentView(R.layout.activity_first_quiz_page);
         listview = (ListView) findViewById(R.id.list1);
 
-        for (int i = 0; i < values.length; ++i) {
-            list.add(values[i]);
+        for (int i = 0; i < values[0].length; ++i) {
+            list.add(values[0][i]);
         }
-        ArrayAdapter adapter = new ArrayAdapter(this,
-                android.R.layout.simple_list_item_1, list);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(this);
         question = (TextView) findViewById(R.id.firstQuestion);
@@ -56,7 +54,7 @@ public class firstQuizPage extends AppCompatActivity implements AdapterView.OnIt
     @Override
     public void onClick(View view) {
         question.setText("");
-
+        list.clear();
     }
 
 }
