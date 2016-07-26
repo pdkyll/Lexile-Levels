@@ -1,5 +1,6 @@
 package com.example.lexilelevels;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -49,4 +50,10 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void beginQuiz(View recommendationButton) {
+        Intent quiz1 = new Intent(this,firstQuizPage.class);
+        startActivity(quiz1);
+    }
+
 }
