@@ -13,6 +13,7 @@ public class Recommendations extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommendations);
         results = (TextView) findViewById(R.id.displayResults);
-        results.setText("Results: " + firstQuizPage.numberCorrect);
+        results.setText("Results: " + Integer.toString(firstQuizPage.numberCorrect));
+        firstQuizPage.numberCorrect = 0;
     }
 }
