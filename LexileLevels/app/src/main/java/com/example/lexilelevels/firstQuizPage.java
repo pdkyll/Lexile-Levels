@@ -30,6 +30,7 @@ public class firstQuizPage extends AppCompatActivity implements AdapterView.OnIt
     int totalNumberOfQuestions = values.length - 1;
     int questionNumber = -1;
     boolean answered;
+    public int numberCorrect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,7 @@ public class firstQuizPage extends AppCompatActivity implements AdapterView.OnIt
             String colorHighlighted;
             if (position == correctAnswerIndices[questionNumber]) {
                 colorHighlighted = "#" + Integer.toHexString(getColor(R.color.correctChoice));
+                numberCorrect += 1;
             } else {
                 colorHighlighted = "#" + Integer.toHexString(getColor(R.color.incorrectChoice));
             }
@@ -63,15 +65,18 @@ public class firstQuizPage extends AppCompatActivity implements AdapterView.OnIt
 
     @Override
     public void onClick(View view) {
-        answered = false;
-        question.setText("");
-        lst.clear();
-        submitAnswer.setText(R.string.nextQuestion);
-        listview.setAdapter(adapter);
-        if (questionNumber < totalNumberOfQuestions) {
-            questionNumber += 1;
-        } else {
-            questionNumber = totalNumberOfQuestions;
+        if (questionNumber <= totalNumberOfQuestions) {
+            answered = false;
+            question.setText("");
+            lst.clear();
+            submitAnswer.setText(R.string.nextQuestion);
+            listview.setAdapter(adapter);
+            if (questionNumber < totalNumberOfQuestions) {
+                questionNumber += 1;
+            }
+            else {
+                submitAnswer.setText("Submit Quiz");
+            }
         }
         question.setText(questions[questionNumber]);
         for (int i = 0; i < values[questionNumber].length; ++i) {
