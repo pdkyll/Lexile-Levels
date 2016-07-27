@@ -4,5 +4,6 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="appBackground">#D4FCEC</color>
-    <color name="selectedChoice">#9AE4FC</color>
+    <color name="correctChoice">#9AE4FC</color>
+    <color name="incorrectChoice">#FF7D7D</color>
 </resources>
