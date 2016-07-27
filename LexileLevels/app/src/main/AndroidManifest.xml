@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".firstQuizPage"></activity>
+        <activity android:name=".firstQuizPage" />
+        <activity android:name=".Recommendations"></activity>
     </application>
 
 </manifest>

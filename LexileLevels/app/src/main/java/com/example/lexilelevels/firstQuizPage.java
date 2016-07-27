@@ -1,5 +1,6 @@
 package com.example.lexilelevels;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,7 +31,7 @@ public class firstQuizPage extends AppCompatActivity implements AdapterView.OnIt
     int totalNumberOfQuestions = values.length - 1;
     int questionNumber = -1;
     boolean answered;
-    public int numberCorrect;
+    public static int numberCorrect = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +77,9 @@ public class firstQuizPage extends AppCompatActivity implements AdapterView.OnIt
             }
             else {
                 submitAnswer.setText("Submit Quiz");
+                Intent showQuizResults = new Intent(this,Recommendations.class);
+                finish();
+                startActivity(showQuizResults);
             }
         }
         question.setText(questions[questionNumber]);
