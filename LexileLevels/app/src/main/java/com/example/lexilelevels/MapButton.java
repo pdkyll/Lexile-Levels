@@ -15,7 +15,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapButton extends FragmentActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
-    
+
 
 
 
