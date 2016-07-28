@@ -56,4 +56,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(quiz1);
     }
 
+    public void showMap(View mapButton) {
+        Intent libraryMap = new Intent(this,MapButton.class);
+        startActivity(libraryMap);
+    }
+
 }
