@@ -20,7 +20,10 @@
         android:id="@+id/displayResults"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="20dp"/>
+        android:paddingBottom="20dp"
+        android:fontFamily="monospace"
+        android:textAlignment="center"
+        android:textSize="20sp"/>
 
     <LinearLayout
         android:id="@+id/rec1"
@@ -54,137 +57,6 @@
 
         </LinearLayout>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/rec2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:layout_weight="3"
-            android:src="@mipmap/app_icon" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1">
-
-            <TextView
-                android:id="@+id/book2"
-                android:layout_width="50dp"
-                android:layout_height="200dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/author2"
-                android:layout_width="50dp"
-                android:layout_height="200dp"
-                android:layout_weight="1" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/rec3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:layout_weight="3"
-            android:src="@mipmap/app_icon"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1">
-
-            <TextView
-                android:id="@+id/book3"
-                android:layout_width="50dp"
-                android:layout_height="200dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/author3"
-                android:layout_width="50dp"
-                android:layout_height="200dp"
-                android:layout_weight="1" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/rec4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:layout_weight="3"
-            android:src="@mipmap/app_icon" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1">
-
-            <TextView
-                android:id="@+id/book4"
-                android:layout_width="50dp"
-                android:layout_height="200dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/author4"
-                android:layout_width="50dp"
-                android:layout_height="200dp"
-                android:layout_weight="1" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/rec5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:layout_weight="3"
-            android:src="@mipmap/app_icon"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1">
-
-            <TextView
-                android:id="@+id/book5"
-                android:layout_width="50dp"
-                android:layout_height="200dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/author5"
-                android:layout_width="50dp"
-                android:layout_height="200dp"
-                android:layout_weight="1" />
-
-        </LinearLayout>
 
     </LinearLayout>
 

@@ -25,11 +25,12 @@ public class firstQuizPage extends AppCompatActivity implements AdapterView.OnIt
     SharedPreferences savedData;*/
     private static Random ran = new Random();
     TextView question;
+    TextView progress;
     ListView listview;
     ArrayAdapter adapter;
     Button submitAnswer;
     ArrayList<String> lst = new ArrayList<String>();
-    static int numberOfWords = 11;
+    public static int numberOfWords = 11;
     static String[][] level1 = {{"aware", "Having knowledge of a situation"},
             {"fierce", "Displaying aggression"},
             {"accident", "An unfortunate incident that occurs unexpectedly"},
@@ -171,6 +172,7 @@ public class firstQuizPage extends AppCompatActivity implements AdapterView.OnIt
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(this);
         question = (TextView) findViewById(R.id.firstQuestion);
+        progress = (TextView) findViewById(R.id.progress);
         question.setText("This is a quiz to determine your English proficiency so that we can recommend level-appropriate books to you. Please press the 'Begin Quiz' button in order to answer the questions.");
         submitAnswer = (Button) findViewById(R.id.submit);
         submitAnswer.setText(R.string.beginQuiz);
@@ -182,10 +184,10 @@ public class firstQuizPage extends AppCompatActivity implements AdapterView.OnIt
         if (!answered) {
             String colorHighlighted;
             if (position == correctAnswerIndices.get(questionNumber)) {
-                colorHighlighted = "#" + Integer.toHexString(getColor(R.color.correctChoice));
+                colorHighlighted = getResources().getString(R.color.correctChoice);
                 numberCorrect += 1;
             } else {
-                colorHighlighted = "#" + Integer.toHexString(getColor(R.color.incorrectChoice));
+                colorHighlighted = getResources().getString(R.color.incorrectChoice);
             }
             view.setBackgroundColor(Color.parseColor(colorHighlighted));
             answered = true;
@@ -206,7 +208,13 @@ public class firstQuizPage extends AppCompatActivity implements AdapterView.OnIt
             question.setText("");
             lst.clear();
             values.clear();
-            submitAnswer.setText(R.string.nextQuestion);
+            if (questionNumber >= numberOfWords - 2) {
+                progress.setText("Question " + Integer.toString(numberOfWords) + " of " + Integer.toString(numberOfWords));
+                submitAnswer.setText("Submit Quiz");
+            } else {
+                progress.setText("Question " + Integer.toString(questionNumber + 2) + " of " + Integer.toString(numberOfWords));
+                submitAnswer.setText(R.string.nextQuestion);
+            }
             listview.setAdapter(adapter);
             if (questionNumber < numberOfWords - 1) {
                 questionNumber += 1;
@@ -223,7 +231,6 @@ public class firstQuizPage extends AppCompatActivity implements AdapterView.OnIt
                 }
             }
             else {
-                submitAnswer.setText("Submit Quiz");
                 Intent showQuizResults = new Intent(this,Recommendations.class);
                 finish();
                 startActivity(showQuizResults);

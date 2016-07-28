@@ -105,16 +105,6 @@ public class Recommendations extends AppCompatActivity {
             {"Book 5","Author 5"}
     };
     String[][][] allBooks = {booksLevel0,booksLevel1,booksLevel2,booksLevel3,booksLevel4,booksLevel5,booksLevel6,booksLevel7,booksLevel8,booksLevel9,booksLevel10,booksLevel11};
-    TextView book1;
-    TextView book2;
-    TextView book3;
-    TextView book4;
-    TextView book5;
-    TextView author1;
-    TextView author2;
-    TextView author3;
-    TextView author4;
-    TextView author5;
 
 
     @Override
@@ -122,31 +112,12 @@ public class Recommendations extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommendations);
         results = (TextView) findViewById(R.id.displayResults);
-        results.setText("Results: " + Integer.toString(firstQuizPage.numberCorrect));
-        book1 = (TextView) findViewById(R.id.book1);
-        book2 = (TextView) findViewById(R.id.book2);
-        book3 = (TextView) findViewById(R.id.book3);
-        book4 = (TextView) findViewById(R.id.book4);
-        book5 = (TextView) findViewById(R.id.book5);
-        author1 = (TextView) findViewById(R.id.author1);
-        author2 = (TextView) findViewById(R.id.author2);
-        author3 = (TextView) findViewById(R.id.author3);
-        author4 = (TextView) findViewById(R.id.author4);
-        author5 = (TextView) findViewById(R.id.author5);
+        results.setText("Results: " + Integer.toString(firstQuizPage.numberCorrect) + " / " + Integer.toString(firstQuizPage.numberOfWords) + "\n \nPlacement: Level " + Integer.toString(firstQuizPage.numberCorrect));
         recs();
         firstQuizPage.numberCorrect = 0;
     }
     public void recs(){
         int level = firstQuizPage.numberCorrect;
-        book1.setText(allBooks[level][0][0]);
-        book2.setText(allBooks[level][1][0]);
-        book3.setText(allBooks[level][2][0]);
-        book4.setText(allBooks[level][3][0]);
-        book5.setText(allBooks[level][4][0]);
-        author1.setText(allBooks[level][0][1]);
-        author2.setText(allBooks[level][1][1]);
-        author3.setText(allBooks[level][2][1]);
-        author4.setText(allBooks[level][3][1]);
-        author5.setText(allBooks[level][4][1]);
+        // in the middle of adding to recommendations
     }
 }
