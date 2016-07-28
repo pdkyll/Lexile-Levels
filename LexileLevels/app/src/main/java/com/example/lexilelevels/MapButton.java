@@ -15,16 +15,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapButton extends FragmentActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        if (requestCode == MY_LOCATION_REQUEST_CODE) {
-            if (permissions.length == 1 &&
-                    permissions[0] == Manifest.permission.ACCESS_FINE_LOCATION &&
-                    grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                mMap.setMyLocationEnabled(true);
-            } else {
-                // Permission was denied. Display an error message.
-            }
-        }
+    
 
 
 
