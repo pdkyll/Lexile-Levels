@@ -198,10 +198,12 @@ public class firstQuizPage extends AppCompatActivity implements AdapterView.OnIt
     public void onClick(View view) {
         allDefs.clear();
         for (int i = 0; i < 11; i++) {
-            allDefs.remove(questions[i]);
             for (int j = 0; j < 11; j++) {
                 allDefs.add(allLists[i][j][1]);
             }
+        }
+        for (int i = 0; i < 11; i++) {
+            allDefs.remove(questions[i][1]);
         }
         if (questionNumber <= numberOfWords - 1) {
             answered = false;
@@ -236,9 +238,11 @@ public class firstQuizPage extends AppCompatActivity implements AdapterView.OnIt
                 startActivity(showQuizResults);
             }
         }
-        question.setText("What is the definition of " + questions[questionNumber][0] + "?");
-        for (int i = 0; i < values.size(); ++i) {
-            lst.add(values.get(i));
+        if (questionNumber <= numberOfWords-1) {
+            question.setText("What is the definition of " + questions[questionNumber][0] + "?");
+            for (int i = 0; i < values.size(); ++i) {
+                lst.add(values.get(i));
+            }
         }
     }
 

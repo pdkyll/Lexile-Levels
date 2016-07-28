@@ -3,5 +3,4 @@
     <string name="action_settings">Settings</string>
     <string name="beginQuiz">Begin Quiz</string>
     <string name="nextQuestion">Next Question</string>
-    <string name="bookDisplaySize">200dp</string>
 </resources>
