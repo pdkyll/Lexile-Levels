@@ -77,7 +77,8 @@
             android:layout_weight="1"
             android:layout_height="150dp"
             android:src="@mipmap/nearby_libraries"
-            android:layout_gravity="left|top"/>
+            android:layout_gravity="left|top"
+            android:onClick="showMap"/>
         <!--android:onClick=""-->
 
         <ImageView

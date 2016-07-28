@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".firstQuizPage" />
-        <activity android:name=".Recommendations"></activity>
+        <activity android:name=".Recommendations" />
+        <activity android:name=".MapButton"></activity>
     </application>
 
 </manifest>
