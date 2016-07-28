@@ -21,8 +21,8 @@ import java.util.ArrayList;
 public class firstQuizPage extends AppCompatActivity implements AdapterView.OnItemClickListener,View.OnClickListener {
 
     /*private static final String persistingData = "persistingData";
-    private static final String data_name = "takenTest";*/
-    SharedPreferences savedData;
+    private static final String data_name = "takenTest";
+    SharedPreferences savedData;*/
     private static Random ran = new Random();
     TextView question;
     ListView listview;
@@ -30,7 +30,7 @@ public class firstQuizPage extends AppCompatActivity implements AdapterView.OnIt
     Button submitAnswer;
     ArrayList<String> lst = new ArrayList<String>();
     static int numberOfWords = 11;
-    static String[][] level1 = {{"ware", "Having knowledge of a situation"},
+    static String[][] level1 = {{"aware", "Having knowledge of a situation"},
             {"fierce", "Displaying aggression"},
             {"accident", "An unfortunate incident that occurs unexpectedly"},
             {"collapse", "To fall down suddenly"},
@@ -171,8 +171,7 @@ public class firstQuizPage extends AppCompatActivity implements AdapterView.OnIt
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(this);
         question = (TextView) findViewById(R.id.firstQuestion);
-        question.setText("This is a quiz to determine your English proficiency so that we can recommend level-appropriate books to you. Please" +
-                    " press the 'Begin Quiz' button in order to answer the questions.");
+        question.setText("This is a quiz to determine your English proficiency so that we can recommend level-appropriate books to you. Please press the 'Begin Quiz' button in order to answer the questions.");
         submitAnswer = (Button) findViewById(R.id.submit);
         submitAnswer.setText(R.string.beginQuiz);
         answered = false;
@@ -197,6 +196,7 @@ public class firstQuizPage extends AppCompatActivity implements AdapterView.OnIt
     public void onClick(View view) {
         allDefs.clear();
         for (int i = 0; i < 11; i++) {
+            allDefs.remove(questions[i]);
             for (int j = 0; j < 11; j++) {
                 allDefs.add(allLists[i][j][1]);
             }
