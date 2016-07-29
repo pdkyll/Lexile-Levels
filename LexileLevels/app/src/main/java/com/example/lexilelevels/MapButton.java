@@ -25,12 +25,17 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+<<<<<<< HEAD
 public class MapButton extends AppCompatActivity implements
         OnMyLocationButtonClickListener,
         OnMapReadyCallback,
         ActivityCompat.OnRequestPermissionsResultCallback {
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
     private boolean mPermissionDenied = false;
+=======
+
+public class MapButton extends FragmentActivity implements OnMapReadyCallback {
+>>>>>>> origin/master
     private GoogleMap mMap;
 
     @Override
@@ -99,10 +104,13 @@ public class MapButton extends AppCompatActivity implements
 
 }
 
+<<<<<<< HEAD
 
 
 
 
 
 
+=======
+>>>>>>> origin/master
 

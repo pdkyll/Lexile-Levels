@@ -4,6 +4,7 @@ import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -141,15 +142,16 @@ public class Recommendations extends AppCompatActivity {
         rec.setOrientation(LinearLayout.HORIZONTAL);
         CheckBox checkOff = new CheckBox(this);
         rec.addView(checkOff);
-        for (int j = 0; j < allBooks[level][i].length; j++) {
+        for (int j = 0; j < allBooks[unchangedLevel][i].length; j++) {
             TextView bookElement = new TextView(this);
             checkOff.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     rec.setPadding(0, 0, 0, 0);
                     if (onDisplay >= allBooks[level].length - 1) {
-                        if (level < allBooks.length) {
+                        if (level < allBooks.length - 1) {
                             level += 1;
+                            firstQuizPage.numberCorrect = 0;
                             onDisplay = 0;
                             createOneRec(0);
                         }
@@ -157,8 +159,9 @@ public class Recommendations extends AppCompatActivity {
                         onDisplay += 1;
                         createOneRec(onDisplay);
                     }
-                    bookCounter += 1;
-                    if (bookCounter == (13-level)*5) {
+                    rec.removeAllViews();
+                    bookCounter+=1;
+                    if (bookCounter == (13 - unchangedLevel) * 5) {
                         results.setText(R.string.completionCongratulations);
                         onDisplay = 0;
                         bookCounter = 0;
@@ -166,7 +169,6 @@ public class Recommendations extends AppCompatActivity {
                         unchangedLevel = 0;
                         firstQuizPage.numberCorrect = 0;
                     }
-                    rec.removeAllViews();
                 }
             });
             bookElement.setText(allBooks[level][i][j]);
