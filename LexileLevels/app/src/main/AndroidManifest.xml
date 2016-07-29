@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.lexilelevels">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/app_icon"
@@ -20,13 +22,15 @@
         </activity>
         <activity android:name=".firstQuizPage" />
         <activity android:name=".Recommendations" />
-        <activity android:name=".MapButton"></activity>
-        <!--<meta-data-->
-            <!--android:name="com.google.android.gms.version"-->
-            <!--android:value="@integer/google_play_services_version" />-->
+        <activity android:name=".MapButton" />
+        <!-- <meta-data -->
+        <!-- android:name="com.google.android.gms.version" -->
+        <!-- android:value="@integer/google_play_services_version" /> -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCjLHSVnGavdVrCcqDKs6uqna_bGDa4fgE"/>
+            android:value="AIzaSyCjLHSVnGavdVrCcqDKs6uqna_bGDa4fgE" />
+
+        <activity android:name=".vocabularyLists"></activity>
     </application>
 
 </manifest>

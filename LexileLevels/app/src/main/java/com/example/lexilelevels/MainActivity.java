@@ -61,4 +61,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(libraryMap);
     }
 
+    public void vocabLists(View vocabButton) {
+        Intent vocabLists = new Intent(this,vocabularyLists.class);
+        startActivity(vocabLists);
+    }
+
 }

@@ -53,7 +53,6 @@
             android:layout_height="150dp"
             android:src="@mipmap/activity_log"
             android:layout_gravity="left|top"/>
-        <!--android:onClick=""-->
 
         <ImageView
             android:id="@+id/vocabulary_lists"
@@ -61,7 +60,8 @@
             android:layout_weight="1"
             android:layout_height="150dp"
             android:src="@mipmap/vocabulary_lists"
-            android:layout_gravity="left|top"/>
+            android:layout_gravity="left|top"
+            android:onClick="vocabLists"/>
 
     </LinearLayout>
 

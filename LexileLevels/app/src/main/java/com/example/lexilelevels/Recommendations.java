@@ -1,16 +1,18 @@
 package com.example.lexilelevels;
 
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Recommendations extends AppCompatActivity {
 
@@ -161,12 +163,13 @@ public class Recommendations extends AppCompatActivity {
                     }
                     rec.removeAllViews();
                     bookCounter+=1;
-                    if (bookCounter == (13 - unchangedLevel) * 5) {
+                    if (bookCounter == ((allBooks.length + 1) - unchangedLevel) * 5) {
                         results.setText(R.string.completionCongratulations);
                         onDisplay = 0;
                         bookCounter = 0;
                         level = 0;
                         unchangedLevel = 0;
+                        final int score = firstQuizPage.numberCorrect;
                         firstQuizPage.numberCorrect = 0;
                     }
                 }
