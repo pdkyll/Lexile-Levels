@@ -3,18 +3,54 @@ package com.example.lexilelevels;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.ActivityCompat;
+import android.location.Location;
 import android.os.Bundle;
 import com.google.android.gms.maps.*;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.*;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
+import com.google.android.gms.maps.LocationSource;
+import android.location.Location;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+public class MapButton extends AppCompatActivity implements OnMapReadyCallback{
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
 
-public class MapButton extends FragmentActivity implements OnMapReadyCallback {
+    }
+
+    private static class MapButton1 implements LocationSource, OnMapLongClickListener{
+        private OnLocationChangedListener mListener;
+        private boolean mPaused;
+
+        @Override
+        public void activate(OnLocationChangedListener onLocationChangedListener) {
+            mListener = onLocationChangedListener;
+
+        }
+
+        @Override
+        public void deactivate() {
+            mListener = null;
+        }
+
+        @Override
+        public void onMapLongClick(LatLng latLng) {
+            if(mListener != null && !mPaused){
+                Location location = new Location("LongPressLocationProvider");
+                location.setLatitude(latLng.latitude);
+                location
+            }
+
+        }
+    }
+
+}
+/*public class MapButton extends FragmentActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
 
     @Override
@@ -35,19 +71,5 @@ public class MapButton extends FragmentActivity implements OnMapReadyCallback {
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 }
-/*public class MainActivity extends AppCompatActivity
-        implements ActivityCompat.OnRequestPermissionsResultCallback {
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        if (requestCode == MY_LOCATION_REQUEST_CODE) {
-            if (permissions.length == 1 &&
-                    permissions[0] == Manifest.permission.ACCESS_FINE_LOCATION &&
-                    grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                mMap.setMyLocationEnabled(true);
-            } else {
-                // Permission was denied. Display an error message.
-            }
-        }
-    }
-}
 */
+
