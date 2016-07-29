@@ -1,37 +1,26 @@
 package com.example.lexilelevels;
 
-import android.app.ActionBar;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewManager;
-import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Recommendations extends AppCompatActivity {
 
     TextView results;
     LinearLayout allRecs;
-    ArrayList<String> recsLevelBooks = new ArrayList<String>();
     String[][] booksLevel0 = {
             {"The Very Hungry Caterpillar", "Eric Carle"},
             {"Llama Llama Mad at Mama", "Anna Dewdeney"},
             {"Room on the Broom", "Julia Donaldson"},
             {"Baby Beluga", "Raffi Cavoukian"},
-            {"The Pigeon Wants a Puppy", "Moe Williams"}
+            {"The Pigeon Wants a Puppy", "Moe Williams"},
     };
     String[][] booksLevel1 = {
             {"The Cat in the Hat", "Dr. Seuss"},
@@ -110,24 +99,34 @@ public class Recommendations extends AppCompatActivity {
             {"The Sound and the Fury", "William Faulkner"},
             {"Paradise Lost", "John Milton"}
     };
-    static int level = firstQuizPage.numberCorrect;
     static int onDisplay = 0;
     static int bookCounter = 0;
+    static int level = firstQuizPage.numberCorrect;
+    static int unchangedLevel = level;
+    String resultsDisplay = "Results: " + Integer.toString(level) + " / " + Integer.toString(firstQuizPage.numberOfWords) + "\n \nPlacement: Level " + Integer.toString(level);
     String[][][] allBooks = {booksLevel0, booksLevel1, booksLevel2, booksLevel3, booksLevel4, booksLevel5, booksLevel6, booksLevel7, booksLevel8, booksLevel9, booksLevel10, booksLevel11};
-
+    int bookTotal = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommendations);
         results = (TextView) findViewById(R.id.displayResults);
-        results.setText("Results: " + Integer.toString(level) + " / " + Integer.toString(firstQuizPage.numberOfWords) + "\n \nPlacement: Level " + Integer.toString(level));
+        results.setText(resultsDisplay);
         allRecs = (LinearLayout) findViewById(R.id.allRecs);
         recs();
-        firstQuizPage.numberCorrect = 0;
     }
 
     public void recs() {
+        for (int j = 0; j < allBooks.length; j++) {
+            for (int k = 0; k < allBooks[j].length; k++) {
+                bookTotal += 1;
+            }
+        }
+        level = firstQuizPage.numberCorrect;
+        unchangedLevel = level;
+        String resultsDisplay = "Results: " + Integer.toString(level) + " / " + Integer.toString(firstQuizPage.numberOfWords) + "\n \nPlacement: Level " + Integer.toString(level);
+        results.setText(resultsDisplay);
         for (int i = 0; i < allBooks[i].length; i++) {
             createOneRec(i);
             onDisplay += 1;
@@ -142,14 +141,14 @@ public class Recommendations extends AppCompatActivity {
         rec.setOrientation(LinearLayout.HORIZONTAL);
         CheckBox checkOff = new CheckBox(this);
         rec.addView(checkOff);
-        for (int j = 0; j < allBooks[level-1][i].length; j++) {
+        for (int j = 0; j < allBooks[level][i].length; j++) {
             TextView bookElement = new TextView(this);
             checkOff.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     rec.setPadding(0, 0, 0, 0);
                     if (onDisplay >= allBooks[level].length - 1) {
-                        if (level < 11) {
+                        if (level < allBooks.length) {
                             level += 1;
                             onDisplay = 0;
                             createOneRec(0);
@@ -159,10 +158,15 @@ public class Recommendations extends AppCompatActivity {
                         createOneRec(onDisplay);
                     }
                     bookCounter += 1;
-                    rec.removeAllViews();
-                    if (bookCounter == 12 * 5) {
-                        results.setText("Congratulations for finishing all of the books and achieving proficiency in the English language!");
+                    if (bookCounter == (13-level)*5) {
+                        results.setText(R.string.completionCongratulations);
+                        onDisplay = 0;
+                        bookCounter = 0;
+                        level = 0;
+                        unchangedLevel = 0;
+                        firstQuizPage.numberCorrect = 0;
                     }
+                    rec.removeAllViews();
                 }
             });
             bookElement.setText(allBooks[level][i][j]);
@@ -174,5 +178,4 @@ public class Recommendations extends AppCompatActivity {
         }
         allRecs.addView(rec);
     }
-
 }

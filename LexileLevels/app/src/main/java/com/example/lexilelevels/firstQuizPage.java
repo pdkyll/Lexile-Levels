@@ -1,11 +1,9 @@
 package com.example.lexilelevels;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,9 +18,6 @@ import java.util.ArrayList;
 
 public class firstQuizPage extends AppCompatActivity implements AdapterView.OnItemClickListener,View.OnClickListener {
 
-    /*private static final String persistingData = "persistingData";
-    private static final String data_name = "takenTest";
-    SharedPreferences savedData;*/
     private static Random ran = new Random();
     TextView question;
     TextView progress;

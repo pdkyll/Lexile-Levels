@@ -3,4 +3,5 @@
     <string name="action_settings">Settings</string>
     <string name="beginQuiz">Begin Quiz</string>
     <string name="nextQuestion">Next Question</string>
+    <string name="completionCongratulations">Congratulations for finishing all of the books and achieving proficiency in the English language!</string>
 </resources>
