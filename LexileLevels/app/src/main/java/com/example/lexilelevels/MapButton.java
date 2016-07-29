@@ -17,40 +17,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapButton extends AppCompatActivity implements OnMapReadyCallback{
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
 
-    }
-
-    private static class MapButton1 implements LocationSource, OnMapLongClickListener{
-        private OnLocationChangedListener mListener;
-        private boolean mPaused;
-
-        @Override
-        public void activate(OnLocationChangedListener onLocationChangedListener) {
-            mListener = onLocationChangedListener;
-
-        }
-
-        @Override
-        public void deactivate() {
-            mListener = null;
-        }
-
-        @Override
-        public void onMapLongClick(LatLng latLng) {
-            if(mListener != null && !mPaused){
-                Location location = new Location("LongPressLocationProvider");
-                location.setLatitude(latLng.latitude);
-                location
-            }
-
-        }
-    }
-
-}
-/*public class MapButton extends FragmentActivity implements OnMapReadyCallback {
+public class MapButton extends FragmentActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
 
     @Override
@@ -71,5 +39,5 @@ public class MapButton extends AppCompatActivity implements OnMapReadyCallback{
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 }
-*/
+
 
