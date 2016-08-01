@@ -1,11 +1,14 @@
 package com.example.lexilelevels;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -103,41 +106,59 @@ public class Recommendations extends AppCompatActivity {
             {"Paradise Lost", "John Milton"}
     };
     static int onDisplay = 0;
+    static int numberShown = 3;
     static int bookCounter = 0;
-    static int level = firstQuizPage.numberCorrect;
-    static int unchangedLevel = level;
-    String resultsDisplay = "Results: " + Integer.toString(level) + " / " + Integer.toString(firstQuizPage.numberOfWords) + "\n \nPlacement: Level " + Integer.toString(level);
+    static int level;
+    static int unchangedLevel;
+    String resultsDisplay;
     String[][][] allBooks = {booksLevel0, booksLevel1, booksLevel2, booksLevel3, booksLevel4, booksLevel5, booksLevel6, booksLevel7, booksLevel8, booksLevel9, booksLevel10, booksLevel11};
     int bookTotal = 0;
+    int levelCounter;
+    SharedPreferences recSharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommendations);
+        recSharedPreferences = getSharedPreferences(MainActivity.MyPREFERENCES,Context.MODE_PRIVATE);
         results = (TextView) findViewById(R.id.displayResults);
         results.setText(resultsDisplay);
         allRecs = (LinearLayout) findViewById(R.id.allRecs);
+        onDisplay = 0;
+        determineLevel();
+        unchangedLevel = level;
+        levelCounter = 0;
+        resultsDisplay = "Results: " + Integer.toString(level) + " / " + Integer.toString(firstQuizPage.numberOfWords) + "\n \nPlacement: Level " + Integer.toString(level);
         recs();
     }
 
-    public void recs() {
+    private void determineLevel() {
+        if (recSharedPreferences.getString("takenDiagnostic","")=="false") {
+            level = firstQuizPage.numberCorrect;
+            SharedPreferences.Editor editor = recSharedPreferences.edit();
+            editor.putString("takenDiagnostic","true").commit();
+        } else {
+            level = recSharedPreferences.getInt("Level",-1);
+        }
+    }
+
+    private void recs() {
         for (int j = 0; j < allBooks.length; j++) {
             for (int k = 0; k < allBooks[j].length; k++) {
                 bookTotal += 1;
             }
         }
-        level = firstQuizPage.numberCorrect;
-        unchangedLevel = level;
         String resultsDisplay = "Results: " + Integer.toString(level) + " / " + Integer.toString(firstQuizPage.numberOfWords) + "\n \nPlacement: Level " + Integer.toString(level);
         results.setText(resultsDisplay);
-        for (int i = 0; i < allBooks[i].length; i++) {
+        levelCounter = 0;
+        for (int i = 0; i < numberShown; i++) {
             createOneRec(i);
             onDisplay += 1;
             bookCounter += 1;
         }
     }
 
-    public void createOneRec(final int i) {
+    private void createOneRec(int i) {
         final LinearLayout rec = new LinearLayout(this);
         rec.setLayoutParams(new LinearLayout.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT));
         rec.setPadding(0,70,0,70);
@@ -150,26 +171,39 @@ public class Recommendations extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     rec.setPadding(0, 0, 0, 0);
-                    if (onDisplay >= allBooks[level].length - 1) {
-                        if (level < allBooks.length - 1) {
+                    if (levelCounter == allBooks[unchangedLevel].length - 1) {
+                        if (level < allBooks.length) {
                             level += 1;
-                            firstQuizPage.numberCorrect = 0;
                             onDisplay = 0;
-                            createOneRec(0);
+                            SharedPreferences.Editor editor = recSharedPreferences.edit();
+                            editor.putInt("Level",level-1).commit();
+                            results.setText("You are ready to move on to Level " + Integer.toString(level) + "! Please click on the 'Quiz Me' icon to test yourself before proceeding.");
+                            int newLevel;
+                            int oldLevel = recSharedPreferences.getInt("Level",-1);
+                            if (firstQuizPage.numberCorrect > firstQuizPage.numberOfWords/2) {
+                                newLevel = oldLevel + 1;
+                            } else {
+                                newLevel = oldLevel;
+                            }
+                            editor.putInt("Level",newLevel);
+                            editor.commit();
                         }
                     } else {
-                        onDisplay += 1;
-                        createOneRec(onDisplay);
+                        if (onDisplay < allBooks[unchangedLevel].length) {
+                            createOneRec(onDisplay);
+                            onDisplay += 1;
+                            Log.d("onDisplay",Integer.toString(onDisplay));
+                        }
                     }
                     rec.removeAllViews();
                     bookCounter+=1;
-                    if (bookCounter == ((allBooks.length + 1) - unchangedLevel) * 5) {
+                    levelCounter += 1;
+                    if (level == 12) {
                         results.setText(R.string.completionCongratulations);
                         onDisplay = 0;
                         bookCounter = 0;
-                        level = 0;
-                        unchangedLevel = 0;
-                        final int score = firstQuizPage.numberCorrect;
+                        level = 11;
+                        unchangedLevel = 11;
                         firstQuizPage.numberCorrect = 0;
                     }
                 }

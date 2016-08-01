@@ -4,6 +4,14 @@
     <string name="beginQuiz">Begin Quiz</string>
     <string name="nextQuestion">Next Question</string>
     <string name="completionCongratulations">Congratulations for finishing all of the books and achieving proficiency in the English language!</string>
+    <string name="quiz_score_history">Quiz Score History</string>
+
+    <!-- icon names -->
+    <string name="quiz_me">Quiz Me</string>
+    <string name="recommendations">Recommendations</string>
+    <string name="activity_log">Activity Log</string>
+    <string name="libraries_near_me">Libraries Near Me</string>
+    <string name="vocabulary_lists">Vocabulary Lists</string>
 
     <!--    Permissions    -->
     <string name="permission_rationale_location">Access to the location service is required to demonstrate the \'my location\' feature, which shows your current location on the map.</string>

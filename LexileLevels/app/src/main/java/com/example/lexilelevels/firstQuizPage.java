@@ -1,5 +1,6 @@
 package com.example.lexilelevels;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -12,8 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -28,7 +29,6 @@ public class firstQuizPage extends AppCompatActivity implements AdapterView.OnIt
     ArrayAdapter adapter;
     Button submitAnswer;
     ArrayList<String> lst = new ArrayList<String>();
-    public static int numberOfWords = 11;
     static String[][] level1 = {{"aware", "Having knowledge of a situation"},
             {"fierce", "Displaying aggression"},
             {"accident", "An unfortunate incident that occurs unexpectedly"},
@@ -149,29 +149,36 @@ public class firstQuizPage extends AppCompatActivity implements AdapterView.OnIt
             {"onus","A difficult or disagreeable task or burden"},
             {"nadir","The lowest point"},
             {"sybaritic","Characterized by loving luxury"},
-            {"verisimilitude","The appearance or semblance of truth"}};
+            {"verisimilitude","The appearance or semblance of truth"},
+            {"pastiche","A mixture of disparate items"}};
     static String[][][] allLists = {level1,level2,level3,level4,level5,level6,level7,level8,level9,level10,level11};
-    String[][] questions = {level1[ran.nextInt(numberOfWords)],level2[ran.nextInt(numberOfWords)],level3[ran.nextInt(numberOfWords)],
-            level4[ran.nextInt(numberOfWords)],level5[ran.nextInt(numberOfWords)],level6[ran.nextInt(numberOfWords)],level7[ran.nextInt(numberOfWords)],
-            level8[ran.nextInt(numberOfWords)],level9[ran.nextInt(numberOfWords)],level10[ran.nextInt(numberOfWords)],level11[ran.nextInt(numberOfWords)]};
     ArrayList<String> allDefs = new ArrayList<String>();
-    ArrayList<String> values = new ArrayList<String>();;
+    ArrayList<String> values = new ArrayList<String>();
     List<Integer> correctAnswerIndices = new ArrayList<>();
     int questionNumber = -1;
     boolean answered;
+    String[][] questions = {null,null,null,null,null,null,null,null,null,null,null};
     public static int numberCorrect = 0;
+    public static int numberOfWords = allLists.length;
+    public static ArrayList<String> wordsWrong = new ArrayList<String>();
+    public static boolean diagnosticStatus;
+    SharedPreferences sharedpreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_quiz_page);
+        sharedpreferences = getSharedPreferences(MainActivity.MyPREFERENCES, Context.MODE_PRIVATE);
+        numberCorrect = 0;
+        wordsWrong.clear();
+        numberOfWords = allLists.length;
+        question = (TextView) findViewById(R.id.firstQuestion);
+        createQuestionWords();
         listview = (ListView) findViewById(R.id.choices);
         adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, lst);
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(this);
-        question = (TextView) findViewById(R.id.firstQuestion);
         progress = (TextView) findViewById(R.id.progress);
-        question.setText("This is a quiz to determine your English proficiency so that we can recommend level-appropriate books to you. Please press the 'Begin Quiz' button in order to answer the questions.");
         submitAnswer = (Button) findViewById(R.id.submit);
         submitAnswer.setText(R.string.beginQuiz);
         answered = false;
@@ -186,6 +193,7 @@ public class firstQuizPage extends AppCompatActivity implements AdapterView.OnIt
                 numberCorrect += 1;
             } else {
                 colorHighlighted = getResources().getString(R.color.incorrectChoice);
+                wordsWrong.add(questions[questionNumber][0]);
             }
             view.setBackgroundColor(Color.parseColor(colorHighlighted));
             answered = true;
@@ -231,18 +239,54 @@ public class firstQuizPage extends AppCompatActivity implements AdapterView.OnIt
                 }
             }
             else {
-                public static final int newScore = numberCorrect;
-                Intent showQuizResults = new Intent(this,Recommendations.class);
+                Intent showQuizResults = new Intent(this,showQuizResults.class);
+                String extractedValue = sharedpreferences.getString(MainActivity.allScores, "");
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                if (extractedValue == "") {
+                    extractedValue+=(("Diagnostic Quiz Result: " + Integer.toString(numberCorrect))+",");
+                    editor.putInt("Level",numberCorrect);
+                } else {
+                    extractedValue += (("Leveling Up Quiz Result: " + Integer.toString(numberCorrect)) + ",");
+                }
+                editor.putString(MainActivity.allScores,extractedValue).commit();
                 finish();
                 startActivity(showQuizResults);
             }
         }
         if (questionNumber <= numberOfWords-1) {
-            question.setText("What is the definition of " + questions[questionNumber][0] + "?");
+            String wordChosen = questions[questionNumber][0];
+            question.setText("What is the definition of " + wordChosen + "?");
             for (int i = 0; i < values.size(); ++i) {
                 lst.add(values.get(i));
             }
         }
+    }
+
+    public void createQuestionWords() {
+        if (!(sharedpreferences.contains("takenDiagnostic")) || sharedpreferences.getInt("Level",-1) == 0) {
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            for (int i = 0; i < numberOfWords; i++) {
+                questions[i] = allLists[i][ran.nextInt(numberOfWords)];
+            }
+            question.setText("This is a quiz to determine your English proficiency so that we can recommend level-appropriate books to you. Please press the 'Begin Quiz' button in order to answer the questions.");
+            editor.putString("takenDiagnostic","false").commit();
+            diagnosticStatus = false;
+        } else {
+            int dispLevel = sharedpreferences.getInt("Level", -1) - 1;
+            if (dispLevel == 11) {
+                question.setText("You have finished all of the available levels and are now a master of the English language!");
+                submitAnswer.setVisibility(View.GONE);
+            }
+            if (dispLevel <= numberOfWords) {
+                String[][] removingArray = allLists[dispLevel];
+                for (int i = 0; i < numberOfWords; i++) {
+                    int indexChosen = ran.nextInt(numberOfWords);
+                    questions[i] = removingArray[indexChosen];
+                }
+                question.setText("Because you have completed all of the books in level " + Integer.toString(Recommendations.unchangedLevel) + ", you can now level up to Level " + Integer.toString(Recommendations.unchangedLevel + 1) + " by taking this quiz. Good luck!");
+            }
+        }
+
     }
 
 }

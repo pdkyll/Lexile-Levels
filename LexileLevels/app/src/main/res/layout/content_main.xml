@@ -20,23 +20,50 @@
         android:orientation="horizontal"
         android:layout_weight="1">
 
-        <ImageView
-            android:id="@+id/recommendations"
-            android:onClick="beginQuiz"
-            android:layout_weight="1"
+        <LinearLayout
             android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="150dp"
-            android:src="@mipmap/recommendations"
-            android:layout_gravity="left|top"/>
-            <!--android:onClick=""-->
+            android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/uploads"
-            android:layout_weight="1"
+            <ImageView
+                android:onClick="viewRecommendations"
+                android:id="@+id/recommendations"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:src="@mipmap/uploads"
+                android:layout_gravity="left|top"/>
+
+             <TextView
+                 android:layout_width="match_parent"
+                 android:layout_height="20dp"
+                 android:text="@string/recommendations"
+                 android:textAlignment="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="150dp"
-            android:src="@mipmap/uploads"
-            android:layout_gravity="left|top"/>
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/activity_log"
+                android:onClick="showActivityLog"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="130dp"
+                android:src="@mipmap/activity_log"
+                android:layout_gravity="left|top"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:text="@string/activity_log"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -46,22 +73,28 @@
         android:orientation="horizontal"
         android:layout_weight="1">
 
-        <ImageView
-            android:id="@+id/activity_log"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="150dp"
-            android:src="@mipmap/activity_log"
-            android:layout_gravity="left|top"/>
+            android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/vocabulary_lists"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="150dp"
-            android:src="@mipmap/vocabulary_lists"
-            android:layout_gravity="left|top"
-            android:onClick="vocabLists"/>
+            <ImageView
+                android:id="@+id/quizMe"
+                android:onClick="beginQuiz"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:src="@mipmap/recommendations"
+                android:layout_gravity="left|top"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:text="@string/quiz_me"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -70,24 +103,52 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="150dp"
+            android:orientation="vertical">
 
         <ImageView
             android:id="@+id/nearby_libraries"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_weight="1"
-            android:layout_height="150dp"
+            android:layout_height="130dp"
             android:src="@mipmap/nearby_libraries"
             android:layout_gravity="left|top"
             android:onClick="showMap"/>
-        <!--android:onClick=""-->
 
-        <ImageView
-            android:id="@+id/account"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:text="@string/libraries_near_me"
+            android:textAlignment="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="150dp"
-            android:src="@mipmap/account"
+            android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/vocabulary_lists"
+            android:onClick="vocabLists"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="130dp"
+            android:src="@mipmap/vocabulary_lists"
             android:layout_gravity="left|top"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:text="@string/vocabulary_lists"
+            android:textAlignment="center"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 </LinearLayout>
