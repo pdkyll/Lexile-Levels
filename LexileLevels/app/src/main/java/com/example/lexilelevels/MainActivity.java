@@ -77,4 +77,10 @@ public class MainActivity extends AppCompatActivity {
         Intent showRecs = new Intent(this,Recommendations.class);
         startActivity(showRecs);
     }
+
+    public void viewUploads(View uploadsButton) {
+        Intent showUploads = new Intent(this,Uploads.class);
+        startActivity(showUploads);
+    }
+
 }

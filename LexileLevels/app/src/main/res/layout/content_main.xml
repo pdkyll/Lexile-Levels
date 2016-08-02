@@ -96,6 +96,29 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="150dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/uploads"
+                android:onClick="viewUploads"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:src="@mipmap/upload_books"
+                android:layout_gravity="left|top"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:text="@string/uploads"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout

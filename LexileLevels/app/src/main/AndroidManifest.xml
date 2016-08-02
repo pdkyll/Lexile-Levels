@@ -36,7 +36,7 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyA-K5wz-0O_MeYozVuYfHtKcRf4MF6dATM" />
-            <!--android:value="AIzaSyCjLHSVnGavdVrCcqDKs6uqna_bGDa4fgE" />-->
+        <!-- android:value="AIzaSyCjLHSVnGavdVrCcqDKs6uqna_bGDa4fgE" /> -->
 
         <activity android:name=".vocabularyLists" />
 
@@ -45,7 +45,11 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".activityLog" />
-        <activity android:name=".showQuizResults"></activity>
+        <activity android:name=".showQuizResults" />
+        <activity
+            android:name=".Uploads"
+            android:label="@string/title_activity_uploads"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
