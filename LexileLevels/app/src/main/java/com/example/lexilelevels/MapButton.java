@@ -28,8 +28,6 @@ import com.google.android.gms.maps.LocationSource;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import android.location.Location;
-import com.google.android.gms.maps.OnMapReadyCallback;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -52,7 +50,7 @@ public class MapButton extends AppCompatActivity implements
             {37.444783,-122.145013},
             {37.444011,-122.139735},
             {37.472343,-122.140044}
-                                        };
+    };
     String[] titlesArray = {"Mitchell Park Library","Rinconada Library","College Terrace Library","Downtown Library","Children's Library","Temporary Main Library","East Palo Alto Library"};
 
     @Override
@@ -123,7 +121,7 @@ public class MapButton extends AppCompatActivity implements
             mPermissionDenied = false;
         }
     }
-//Displays a dialog with error message explaining that the location permisssion is missin
+    //Displays a dialog with error message explaining that the location permisssion is missin
     private void showMissingPermissionError() {
         PermissionUtils.PermissionDeniedDialog
                 .newInstance(true).show(getSupportFragmentManager(), "dialog");
@@ -131,12 +129,3 @@ public class MapButton extends AppCompatActivity implements
 
 
 }
-
-
-
-
-
-
-
-
-
