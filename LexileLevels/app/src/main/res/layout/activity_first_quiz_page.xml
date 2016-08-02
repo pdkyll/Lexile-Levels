@@ -8,7 +8,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.lexilelevels.firstQuizPage"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/appBackground">
 
     <TextView
         android:id="@+id/firstQuestion"
