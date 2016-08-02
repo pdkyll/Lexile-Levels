@@ -20,21 +20,11 @@
         android:name="com.google.android.gms.maps.SupportMapFragment" />
 
 
-<<<<<<< HEAD
-        <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        <!--<manifest xmlns:android="http://schemas.android.com/apk/res/android"
             package="com.example.myapp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-        </manifest>
-=======
-
-        <!--<manifest xmlns:android="http://schemas.android.com/apk/res/android"-->
-            <!--package="com.example.myapp"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content">-->
-                <!--<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>-->
-        <!--</manifest>-->
->>>>>>> origin/master
+        </manifest>-->
 
 
 </LinearLayout>
