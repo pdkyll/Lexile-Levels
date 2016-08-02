@@ -4,6 +4,8 @@ package com.example.lexilelevels;
  * Created by facebook on 8/2/16.
  */
 
+import android.content.res.AssetManager;
+
 import java.io.BufferedReader;
     import java.io.File;
     import java.io.FileReader;
@@ -28,7 +30,7 @@ public class MyVocab {
             System.out.println("Sample Book: Dracula");
 
             // Step 2. Read the Text File into a string
-            File sourceFile = new File("assets/dracula.txt");
+            File sourceFile = new File("android.resource://lexilelevels/assets/","dracula.txt");
             String bookStr = readTextFile2String(sourceFile);
 
             // Step 3. Divide book string into words
