@@ -136,7 +136,9 @@ public class Recommendations extends AppCompatActivity {
         if (recSharedPreferences.getString("takenDiagnostic","")=="false") {
             level = firstQuizPage.numberCorrect;
             SharedPreferences.Editor editor = recSharedPreferences.edit();
-            editor.putString("takenDiagnostic","true").commit();
+            if (recSharedPreferences.getInt("Level",-1) > -1) {
+                editor.putString("takenDiagnostic", "true").commit();
+            }
         } else {
             level = recSharedPreferences.getInt("Level",-1);
         }
@@ -178,16 +180,6 @@ public class Recommendations extends AppCompatActivity {
                             SharedPreferences.Editor editor = recSharedPreferences.edit();
                             editor.putInt("Level",level-1).commit();
                             results.setText("You are ready to move on to Level " + Integer.toString(level) + "! Please click on the 'Quiz Me' icon to test yourself before proceeding.");
-                            int newLevel;
-                            int oldLevel = recSharedPreferences.getInt("Level",-1);
-                            if (firstQuizPage.numberCorrect < firstQuizPage.numberOfWords/2) {
-                                newLevel = oldLevel + 1;
-                            } else {
-                                newLevel = oldLevel;
-                            }
-                            editor.putInt("Level",newLevel);
-                            editor.commit();
-                            firstQuizPage.numberCorrect = 0;
                         }
                     } else {
                         if (onDisplay < allBooks[unchangedLevel].length) {
@@ -199,7 +191,7 @@ public class Recommendations extends AppCompatActivity {
                     rec.removeAllViews();
                     bookCounter+=1;
                     levelCounter += 1;
-                    if (level == 12) {
+                    if (level >= 12) {
                         results.setText(R.string.completionCongratulations);
                         onDisplay = 0;
                         bookCounter = 0;
@@ -218,4 +210,5 @@ public class Recommendations extends AppCompatActivity {
         }
         allRecs.addView(rec);
     }
+
 }

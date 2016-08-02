@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,7 +13,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -161,7 +159,6 @@ public class firstQuizPage extends AppCompatActivity implements AdapterView.OnIt
     public static int numberCorrect = 0;
     public static int numberOfWords = allLists.length;
     public static ArrayList<String> wordsWrong = new ArrayList<String>();
-    public static boolean diagnosticStatus;
     SharedPreferences sharedpreferences;
 
     @Override
@@ -263,14 +260,11 @@ public class firstQuizPage extends AppCompatActivity implements AdapterView.OnIt
     }
 
     public void createQuestionWords() {
-        if (!(sharedpreferences.contains("takenDiagnostic")) || sharedpreferences.getInt("Level",-1) == 0) {
-            SharedPreferences.Editor editor = sharedpreferences.edit();
+        if (sharedpreferences.getInt("Level",-1) == 0 && !(sharedpreferences.getString("takenDiagnostic","")=="false")) {
             for (int i = 0; i < numberOfWords; i++) {
                 questions[i] = allLists[i][ran.nextInt(numberOfWords)];
             }
             question.setText("This is a quiz to determine your English proficiency so that we can recommend level-appropriate books to you. Please press the 'Begin Quiz' button in order to answer the questions.");
-            editor.putString("takenDiagnostic","false").commit();
-            diagnosticStatus = false;
         } else {
             int dispLevel = sharedpreferences.getInt("Level", -1) - 1;
             if (dispLevel == 11) {
