@@ -12,4 +12,10 @@
     tools:context="com.example.lexilelevels.Uploads"
     tools:showIn="@layout/activity_uploads">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bookLevel"
+        />
+
 </LinearLayout>

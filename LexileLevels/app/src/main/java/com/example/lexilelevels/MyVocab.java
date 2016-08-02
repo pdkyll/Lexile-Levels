@@ -4,12 +4,14 @@ package com.example.lexilelevels;
  * Created by facebook on 8/2/16.
  */
 
-    import java.io.BufferedReader;
+import java.io.BufferedReader;
     import java.io.File;
     import java.io.FileReader;
     import java.io.IOException;
     import java.util.ArrayList;
-    import java.util.List;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
     import java.util.Scanner;
     import java.util.StringTokenizer;
 
@@ -17,8 +19,9 @@ package com.example.lexilelevels;
 // analyze vocabulary
 public class MyVocab {
         static int vocabCnt[] = new int[13];  // 0=kindergarten, 12=Senior HS
+        static int greatestLevel;
 
-        public static void main(String[] args) {
+        public static void main() {
 
             // Step 1. Print Banner
             System.out.println("Starting Vocab Analyzer!");
@@ -40,6 +43,8 @@ public class MyVocab {
             for (int i = 0; i < 13; i++) {
                 System.out.println("Grade " + i + ": " + vocabCnt[i]);
             }
+            Arrays.sort(vocabCnt);
+            greatestLevel = vocabCnt[vocabCnt.length-1];
             System.out.println("All Done");
         }
 
