@@ -151,7 +151,7 @@ public class firstQuizPage extends AppCompatActivity implements AdapterView.OnIt
             {"sybaritic","Characterized by loving luxury"},
             {"verisimilitude","The appearance or semblance of truth"},
             {"pastiche","A mixture of disparate items"}};
-    static String[][][] allLists = {level1,level2,level3,level4,level5,level6,level7,level8,level9,level10,level11};
+    public static String[][][] allLists = {level1,level2,level3,level4,level5,level6,level7,level8,level9,level10,level11};
     ArrayList<String> allDefs = new ArrayList<String>();
     ArrayList<String> values = new ArrayList<String>();
     List<Integer> correctAnswerIndices = new ArrayList<>();
@@ -278,10 +278,14 @@ public class firstQuizPage extends AppCompatActivity implements AdapterView.OnIt
                 submitAnswer.setVisibility(View.GONE);
             }
             if (dispLevel <= numberOfWords) {
-                String[][] removingArray = allLists[dispLevel];
+                ArrayList<String[]> removingArrayList = new ArrayList<String[]>();
+                for (int j = 0; j < numberOfWords; j++) {
+                    removingArrayList.add(allLists[dispLevel][j]);
+                }
                 for (int i = 0; i < numberOfWords; i++) {
-                    int indexChosen = ran.nextInt(numberOfWords);
-                    questions[i] = removingArray[indexChosen];
+                    int indexChosen = ran.nextInt(removingArrayList.size());
+                    questions[i] = removingArrayList.get(indexChosen);
+                    removingArrayList.remove(indexChosen);
                 }
                 question.setText("Because you have completed all of the books in level " + Integer.toString(Recommendations.unchangedLevel) + ", you can now level up to Level " + Integer.toString(Recommendations.unchangedLevel + 1) + " by taking this quiz. Good luck!");
             }

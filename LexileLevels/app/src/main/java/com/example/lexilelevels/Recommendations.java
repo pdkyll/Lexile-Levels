@@ -180,13 +180,14 @@ public class Recommendations extends AppCompatActivity {
                             results.setText("You are ready to move on to Level " + Integer.toString(level) + "! Please click on the 'Quiz Me' icon to test yourself before proceeding.");
                             int newLevel;
                             int oldLevel = recSharedPreferences.getInt("Level",-1);
-                            if (firstQuizPage.numberCorrect > firstQuizPage.numberOfWords/2) {
+                            if (firstQuizPage.numberCorrect < firstQuizPage.numberOfWords/2) {
                                 newLevel = oldLevel + 1;
                             } else {
                                 newLevel = oldLevel;
                             }
                             editor.putInt("Level",newLevel);
                             editor.commit();
+                            firstQuizPage.numberCorrect = 0;
                         }
                     } else {
                         if (onDisplay < allBooks[unchangedLevel].length) {
