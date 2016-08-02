@@ -28,7 +28,7 @@ public class MyVocab {
             System.out.println("Sample Book: Dracula");
 
             // Step 2. Read the Text File into a string
-            File sourceFile = new File("dracula.txt");
+            File sourceFile = new File("assets/dracula.txt");
             String bookStr = readTextFile2String(sourceFile);
 
             // Step 3. Divide book string into words
