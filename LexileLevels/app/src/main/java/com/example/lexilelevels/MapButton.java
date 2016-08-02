@@ -28,6 +28,8 @@ import com.google.android.gms.maps.LocationSource;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import android.location.Location;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import android.widget.TextView;
 
 import java.util.Locale;

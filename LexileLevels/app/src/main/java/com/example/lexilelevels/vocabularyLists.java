@@ -28,7 +28,7 @@ public class vocabularyLists extends AppCompatActivity{
         responseView = (TextView) findViewById(R.id.resultsView);
         vocabList = (ListView) findViewById(R.id.vocab_list);
         createVocabListDisp();
-        vocabAdapter = new ArrayAdapter(this,android.R.layout.simple_expandable_list_item_1,vocabListDisp);
+        vocabAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,vocabListDisp);
         vocabList.setAdapter(vocabAdapter);
     }
 
@@ -36,7 +36,7 @@ public class vocabularyLists extends AppCompatActivity{
         int vocabLevel = vocabListSharedPreferences.getInt("Level",-1);
         if (vocabLevel > 0) {
             for (int i = 0; i < firstQuizPage.allLists[vocabLevel - 1].length; i++) {
-                vocabListDisp.add(firstQuizPage.allLists[vocabLevel - 1][i][0] + ": " + firstQuizPage.allLists[vocabLevel - 1][i][1].toLowerCase());
+                vocabListDisp.add(firstQuizPage.allLists[vocabLevel - 1][i][0] + ": " + firstQuizPage.allLists[vocabLevel - 1][i][1].toLowerCase() + "\n \n");
             }
         } else {
             responseView.setText("Please take the diagnostic quiz by pressing the 'Quiz Me' button to set your initial level. Afterwards, vocabulary words specific to your level will appear here.");

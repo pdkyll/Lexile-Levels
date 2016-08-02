@@ -42,10 +42,10 @@
         android:layout_weight="1"/>
 
     <ListView
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_width="fill_parent"
+        android:layout_height="400dp"
         android:id="@+id/vocab_list"
-        android:textSize="14sp">
+        android:cacheColorHint="#00000000">
 
     </ListView>
 
