@@ -10,12 +10,15 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.lexilelevels.Uploads"
-    tools:showIn="@layout/activity_uploads">
+    tools:showIn="@layout/activity_uploads"
+    android:background="@color/appBackground">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/bookLevel"
+        android:id="@+id/bookTrial"
+        android:fontFamily="sans-serif"
+        android:textSize="20sp"
         />
 
 </LinearLayout>
