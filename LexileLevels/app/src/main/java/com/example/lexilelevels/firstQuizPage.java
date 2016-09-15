@@ -192,6 +192,10 @@ public class firstQuizPage extends AppCompatActivity implements AdapterView.OnIt
                 colorHighlighted = getResources().getString(R.color.incorrectChoice);
                 wordsWrong.add(questions[questionNumber][0]);
             }
+            if (sharedpreferences.getInt("Level",-1) == 12) {
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putInt("Level",0).commit();
+            }
             view.setBackgroundColor(Color.parseColor(colorHighlighted));
             answered = true;
         }
